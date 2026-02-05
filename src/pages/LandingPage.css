@@ -1,138 +1,164 @@
-/* Simple styling for the landing page */
+/* Landing page layout: header | banner (fills available space) | footer */
 .landing {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* header | main | footer */
+  min-height: 100vh;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-}
+/* Reset only for this module (don't override global resets) */
+.landing * { box-sizing: border-box; }
 
 .container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  /* the main area (middle row) will expand to fill viewport between header and footer */
   width: 100%;
   height: 100%;
   overflow: hidden;
-  padding: 0;
-  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Banner fills the available main area */
 .banner {
-  text-align: center;
-  padding: 10px 16px;
-  background: linear-gradient(90deg, #4b79a1, #283e51);
-  color: white;
+  position: relative;
   width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  flex-shrink: 0;
-  overflow: hidden;
-  gap: 8px;
-  position: relative;
-  z-index: 0;
-}
-
-.banner h1 {
-  margin: 0;
-  font-size: clamp(1rem, 4vw, 1.6rem);
-  line-height: 1.1;
-}
-
-.banner p {
-  margin: 0;
-  font-size: clamp(0.7rem, 2vw, 0.9rem);
-}
-
-.school-image {
-  width: auto;
-  max-width: 640px;
-  height: auto;
-  max-height: 140px;
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  object-fit: contain;
-  object-position: center;
-  display: block;
-}
-
-.qr-section {
-  flex: 1;
+  justify-content: center;
+  color: white;
   text-align: center;
-  margin: 0;
-  padding: 30px 20px;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e8ecf1 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
-  border-radius: 0;
-  position: relative;
+}
+
+/* subtle overlay for better contrast with QR */
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.28));
   z-index: 1;
+  pointer-events: none;
 }
 
-.qr-section h2 {
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
+/* Centered content in banner (title/short copy). Keep it lightweight so QR doesn't cover all copy. */
+.banner-content {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+  padding: 24px;
+}
+
+.banner-content h1 {
+  margin: 0 0 8px 0;
+  font-size: clamp(1.2rem, 4vw, 2.2rem);
+  line-height: 1.05;
   font-weight: 700;
-  margin: 0 0 10px 0;
-  color: #283e51;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.35);
 }
 
-.qr-section > p:first-of-type {
-  font-size: clamp(0.75rem, 1.8vw, 0.9rem);
-  color: #555;
-  margin-bottom: 15px;
-  max-width: 450px;
+.banner-content p {
+  margin: 0;
+  font-size: clamp(0.85rem, 1.6vw, 1.1rem);
+  color: rgba(255,255,255,0.95);
+  text-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
+/* Floating QR card centered on the banner
+   NOTE: background removed (transparent); a subtle halo/drop-shadow is used instead so the image shows through. */
 .qr-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
   display: inline-flex;
-  padding: 15px;
-  background: white;
-  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  background: transparent; /* removed solid white background per request */
+  padding: 8px;
+  border-radius: 14px;
   cursor: pointer;
-  margin: 15px auto;
-  box-shadow: 0 10px 35px rgba(75, 121, 161, 0.25);
-  transition: all 0.3s ease;
-  border: 3px solid #4b79a1;
+  transition: transform .16s ease, box-shadow .16s ease;
+  max-width: 420px;
+  /* keep positioning context for the halo pseudo element */
 }
 
+/* subtle halo behind QR so it remains readable over complex images */
+.qr-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border-radius: 20px;
+  /* darker halo is more legible on bright images; adjust opacity as needed */
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Slight hover effect for desktop */
 .qr-wrapper:hover {
-  transform: scale(1.08);
-  box-shadow: 0 14px 45px rgba(75, 121, 161, 0.35);
-  border-color: #283e51;
+  transform: translate(-50%, -50%) scale(1.03);
+  /* gently intensify halo on hover */
+}
+  
+/* Ensure the generated QR svg scales to the wrapper width and has a drop-shadow */
+.qr-wrapper svg {
+  display: block;
+  width: clamp(160px, 28vw, 340px);
+  height: auto;
+  /* add a drop shadow to the QR itself so it visually separates from the image */
+  filter: drop-shadow(0 14px 40px rgba(0,0,0,0.36));
+  /* keep svg background transparent so the banner shows through */
+  background: transparent !important;
 }
 
-.qr-note {
-  font-size: clamp(0.65rem, 1.5vw, 0.8rem);
-  color: #666;
-  margin-top: 15px;
-  font-style: italic;
-  max-width: 400px;
+/* IMPORTANT: some QR libraries render a white <rect> as the first child inside the SVG.
+   Force that rect to be transparent so there is no white background. */
+.qr-wrapper svg rect:first-child {
+  fill: transparent !important;
 }
 
+/* Responsive adjustments: move QR down a bit on narrow screens to avoid obscuring heading too much */
+@media (max-width: 880px) {
+  .qr-wrapper {
+    top: 56%;
+    padding: 8px;
+    border-radius: 12px;
+  }
+
+  .banner-content {
+    padding: 16px;
+  }
+}
+
+/* Very small screens: anchor QR closer to bottom center and reduce size */
+@media (max-width: 420px) {
+  .qr-wrapper {
+    top: auto;
+    bottom: 10%;
+    transform: translateX(-50%);
+    left: 50%;
+    width: auto;
+    padding: 6px;
+  }
+
+  .qr-wrapper svg {
+    width: 180px;
+  }
+
+  .banner-content h1 {
+    font-size: 1.15rem;
+  }
+}
+
+/* Footer styling already exists in App.css / LandingPage files; just ensure it sits after grid */
 .footer {
   text-align: center;
-  padding: 12px 16px;
+  padding: 12px;
   color: #666;
   background: #f5f5f5;
-  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
-  width: 100%;
-  flex-shrink: 0;
+  font-size: 0.9rem;
 }
