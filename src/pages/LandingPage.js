@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import QRCode from 'react-qr-code';
 import Header from '../components/Header';
+import schoolImage from '../images/School_img1.avif';
 import './LandingPage.css';
 
 const LandingPage = () => {
@@ -18,12 +19,9 @@ const LandingPage = () => {
         <section className="banner">
           <h1>Greenfield High School</h1>
           <p>Your future begins here — learn, grow, and succeed.</p>
-        </section>
-
-        <section className="school-image-section">
           <img
             className="school-image"
-            src="https://images.unsplash.com/photo-1596496056006-7b1a12d28f13?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=8f2d0a3a6f0f8b6b8d2b6c5a4f7b2a6e"
+            src={schoolImage}
             alt="School building"
           />
         </section>
