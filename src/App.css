@@ -1,19 +1,21 @@
 /* global layout */
 .container {
-  max-width: 1500px;
+  width: 100%;
+  max-width: 100%; /* Use full width on large screens */
   margin: 0 auto;
-  padding: 0 16px; /* Add horizontal padding for mobile */
+  padding: 0 20px; /* Add reasonable padding for readability */
 }
 
+/* Responsive container adjustments */
 @media (max-width: 768px) {
   .container {
-    padding: 0 12px;
+    padding: 0 16px;
   }
 }
 
 @media (max-width: 480px) {
   .container {
-    padding: 0 8px;
+    padding: 0 12px;
   }
 }
 
@@ -25,7 +27,7 @@
 
 .school-image {
   width: 100%;
-  max-width: 920px;
+  max-width: none; /* Remove max-width restriction */
   height: auto;
   border-radius: 8px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.12);

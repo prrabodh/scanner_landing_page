@@ -1,28 +1,30 @@
-/* Landing page layout: header | banner (fills available space) | footer */
+/* Landing page layout: natural flow without grid */
 .landing {
-  display: grid;
-  grid-template-rows: auto 1fr auto; /* header | main | footer */
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  min-height: 100vh; /* Ensure full viewport height minimum */
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 /* Reset only for this module (don't override global resets) */
 .landing * { box-sizing: border-box; }
 
 .container {
-  /* the main area (middle row) will expand to fill viewport between header and footer */
+  /* the main area will now flex to fill available space */
   width: 100%;
-  height: 100%;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  flex: 1; /* Allow container to grow and fill available space */
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 /* Banner fills the available main area */
 .banner {
   position: relative;
   width: 100%;
-  height: 100%;
+  flex: 1; /* Allow banner to grow and fill available space */
+  min-height: 50vh; /* Reduced minimum height */
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -31,7 +33,7 @@
   justify-content: center;
   color: white;
   text-align: center;
-  overflow: hidden;
+  overflow: hidden; /* Prevent content overflow */
 }
 
 /* subtle overlay for better contrast with QR */
@@ -121,6 +123,32 @@
   fill: transparent !important;
 }
 
+/* Mobile specific overflow controls */
+@media (max-width: 768px) and (orientation: portrait) {
+  .banner {
+    min-height: 40vh; /* Further reduced for mobile */
+    flex: 1; /* Ensure banner still grows */
+  }
+  
+  .container {
+    width: 100%;
+    flex: 1;
+  }
+  
+  .banner-content {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .banner {
+    min-height: 30vh; /* Further reduced for landscape mode */
+    flex: 1;
+  }
+}
+
 /* Responsive adjustments: move QR down a bit on narrow screens to avoid obscuring heading too much */
 @media (max-width: 880px) {
   .qr-wrapper {
@@ -154,16 +182,17 @@
 /* Very small screens: anchor QR closer to bottom center and reduce size */
 @media (max-width: 420px) {
   .qr-wrapper {
-    top: auto;
-    bottom: 8%;
-    transform: translateX(-50%);
+    position: absolute;
     left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* Keep centered */
     width: auto;
     padding: 4px;
+    max-width: 90vw; /* Ensure it doesn't overflow */
   }
 
   .qr-wrapper svg {
-    width: clamp(120px, 30vw, 160px);
+    width: clamp(120px, 35vw, 180px);
   }
 
   .banner-content h1 {
@@ -178,13 +207,23 @@
   .banner-content {
     padding: 8px;
     text-align: center;
+    position: relative;
+    z-index: 2;
   }
 }
 
 /* Ultra small screens */
 @media (max-width: 320px) {
+  .qr-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 85vw;
+  }
+  
   .qr-wrapper svg {
-    width: 110px;
+    width: clamp(100px, 30vw, 140px);
   }
   
   .banner-content h1 {
@@ -196,26 +235,81 @@
   }
 }
 
+/* Landscape orientation fixes */
+@media (max-height: 500px) and (orientation: landscape) {
+  .landing {
+    height: 100vh;
+    min-height: auto;
+    overflow-y: auto; /* Allow vertical scrolling only when content overflows */
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+  }
+  
+  .banner {
+    min-height: 50vh; /* Reduce banner height in landscape */
+    height: auto;
+  }
+  
+  .qr-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .qr-wrapper svg {
+    width: clamp(100px, 18vh, 180px);
+  }
+  
+  .banner-content {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 2;
+    max-width: 80vw;
+  }
+  
+  .site-header {
+    flex-shrink: 0;
+  }
+  
+  .footer {
+    flex-shrink: 0;
+  }
+}
+
 /* Footer styling already exists in App.css / LandingPage files; just ensure it sits after grid */
 .footer {
   text-align: center;
-  padding: 12px;
+  padding: 12px 20px; /* Add horizontal padding for consistency */
   color: #666;
   background: #f5f5f5;
   font-size: 0.9rem;
+  width: 100%;
+  flex-shrink: 0; /* Prevent footer from shrinking */
+  overflow: hidden; /* Prevent content overflow */
+  white-space: nowrap; /* Prevent text wrapping */
+  text-overflow: ellipsis; /* Add ellipsis for long text */
 }
 
 /* Footer responsive adjustments */
 @media (max-width: 768px) {
   .footer {
-    padding: 10px;
-    font-size: 0.85rem;
+    padding: 10px 12px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }
 
 @media (max-width: 480px) {
   .footer {
-    padding: 8px;
-    font-size: 0.8rem;
+    padding: 8px 8px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }
