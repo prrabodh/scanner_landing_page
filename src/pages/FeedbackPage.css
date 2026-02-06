@@ -1,7 +1,19 @@
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 24px 16px; /* Add horizontal padding */
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px 8px;
+  }
 }
 
 .feedback-card {
@@ -57,4 +69,64 @@
   border: 1px solid #ccc;
   background: #fff;
   cursor: pointer;
+}
+
+/* Mobile responsive adjustments for feedback form */
+@media (max-width: 768px) {
+  .feedback-card {
+    padding: 20px;
+    margin: 0 4px;
+  }
+  
+  .feedback-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+  
+  .feedback-card textarea {
+    padding: 14px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    margin-top: 8px;
+  }
+  
+  .thanks button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedback-card {
+    padding: 16px;
+    margin: 0;
+  }
+  
+  .feedback-card h2 {
+    font-size: 1.3rem;
+  }
+  
+  .feedback-card textarea {
+    padding: 12px;
+    min-height: 120px;
+  }
+  
+  .submit-btn {
+    padding: 12px;
+  }
+  
+  .thanks h3 {
+    font-size: 1.2rem;
+  }
+  
+  .thanks p {
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+  }
 }

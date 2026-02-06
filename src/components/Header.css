@@ -93,3 +93,66 @@
 .nav a:hover {
   color: #d4af37;
 }
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .header-inner {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  
+  .logo img {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .site-title {
+    font-size: 1rem;
+  }
+  
+  .ticker-container {
+    display: none; /* Hide ticker on mobile to save space */
+  }
+  
+  .nav {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .nav a {
+    margin-left: 0;
+    font-size: 0.9rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .nav a:hover {
+    background: rgba(212, 175, 55, 0.2);
+  }
+}
+
+@media (max-width: 480px) {
+  .header-inner {
+    padding: 6px 8px;
+  }
+  
+  .logo {
+    gap: 8px;
+  }
+  
+  .logo img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .site-title {
+    font-size: 0.9rem;
+  }
+  
+  .nav a {
+    font-size: 0.8rem;
+    padding: 3px 6px;
+  }
+}
