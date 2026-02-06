@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/scanner_landing_page/static/css/main.dfe4ea33.css",
+    "main.css": "/scanner_landing_page/static/css/main.9a9729a2.css",
     "main.js": "/scanner_landing_page/static/js/main.0d3ee561.js",
     "static/media/School_img1.avif": "/scanner_landing_page/static/media/School_img1.b9b85f85356e5e985221.avif",
     "static/media/Logo_1.jpeg": "/scanner_landing_page/static/media/Logo_1.66f188599d652df2ee33.jpeg",
     "index.html": "/scanner_landing_page/index.html",
-    "main.dfe4ea33.css.map": "/scanner_landing_page/static/css/main.dfe4ea33.css.map",
+    "main.9a9729a2.css.map": "/scanner_landing_page/static/css/main.9a9729a2.css.map",
     "main.0d3ee561.js.map": "/scanner_landing_page/static/js/main.0d3ee561.js.map"
   },
   "entrypoints": [
-    "static/css/main.dfe4ea33.css",
+    "static/css/main.9a9729a2.css",
     "static/js/main.0d3ee561.js"
   ]
 }
