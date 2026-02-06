@@ -1,21 +1,71 @@
 .site-header {
-  background: #fff;
-  border-bottom: 1px solid #eee;
-  padding: 12px 0;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+  background: linear-gradient(135deg, #1a3a52 0%, #2d5a7b 50%, #1f4d6d 100%);
+  border-bottom: 3px solid #d4af37;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   position: relative;
   z-index: 100;
   flex-shrink: 0;
-  min-height: fit-content;
 }
 
+/* Header nav section */
 .header-inner {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0 16px;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
+}
+
+/* Ticker container - takes up middle space */
+.ticker-container {
+  flex: 1;
+  overflow: hidden;
+  min-width: 200px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  margin: 0 24px;
+  position: relative;
+}
+
+.ticker-content {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  animation: ticker 36s linear infinite;
+  white-space: nowrap;
+  font-family: 'Georgia', 'Garamond', 'Times New Roman', serif;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.ticker-content h1 {
+  font-size: 1.05rem;
+  margin: 0;
+  color: #d4af37;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  font-family: 'Georgia', 'Garamond', 'Times New Roman', serif;
+  text-transform: uppercase;
+  word-spacing: 0.2em;
+}
+
+.ticker-content p {
+  font-size: 0.95rem;
+  margin: 0;
+  color: #f5f5f5;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-family: 'Georgia', 'Garamond', 'Times New Roman', serif;
+  line-height: 1.5;
+  font-style: italic;
 }
 
 .logo {
@@ -26,18 +76,20 @@
 
 .site-title {
   text-decoration: none;
-  color: #333;
+  color: #f5f5f5;
   font-weight: 700;
   font-size: 1.15rem;
+  letter-spacing: 0.5px;
 }
 
 .nav a {
   margin-left: 16px;
-  color: #555;
+  color: #e8e8e8;
   text-decoration: none;
   font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .nav a:hover {
-  color: #000;
+  color: #d4af37;
 }

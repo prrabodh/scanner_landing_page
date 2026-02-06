@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../images/Logo_1.jpeg';
 import './Header.css';
 
 const Header = () => {
@@ -8,12 +9,19 @@ const Header = () => {
       <div className="header-inner">
         <div className="logo">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/6/65/School-icon.svg"
+            src={logo}
             alt="logo"
             width="46"
             height="46"
           />
           <Link to="/" className="site-title">Greenfield High</Link>
+        </div>
+
+        <div className="ticker-container">
+          <div className="ticker-content">
+            <h1>Greenfield High School</h1>
+            <p>Your future begins here — learn, grow, and succeed.</p>
+          </div>
         </div>
 
         <nav className="nav">

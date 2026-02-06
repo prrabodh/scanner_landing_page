@@ -1,27 +1,8 @@
 /* global layout */
 .container {
-  max-width: 1000px;
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 24px;
-}
-
-.banner {
-  text-align: center;
-  padding: 16px 16px;
-  background: linear-gradient(90deg, #4b79a1, #283e51);
-  color: white;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-.banner h1 {
-  margin: 8px 0 4px 0;
-  font-size: 1.8rem;
-}
-
-.banner p {
-  margin: 0;
-  font-size: 0.95rem;
+  padding: 0px;
 }
 
 .school-image-section {
@@ -41,8 +22,8 @@
 
 .qr-section {
   text-align: center;
-  margin: 48px 0;
-  padding: 40px 20px;
+  /* margin: 48px 0; */
+  /* padding: 40px 20px; */
   background: #f8f9fa;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -62,19 +43,19 @@
 
 .qr-wrapper {
   display: inline-block;
-  padding: 20px;
+  /* padding: 20px; */
   background: white;
   border-radius: 12px;
   cursor: pointer;
-  margin: 20px auto;
+  /* margin: 20px auto; */
   box-shadow: 0 8px 24px rgba(0,0,0,0.15);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.qr-wrapper:hover {
+/* .qr-wrapper:hover {
   transform: scale(1.05);
   box-shadow: 0 12px 32px rgba(0,0,0,0.2);
-}
+} */
 
 .qr-note {
   font-size: 0.9rem;
@@ -86,5 +67,5 @@
   text-align: center;
   padding: 16px;
   color: #666;
-  margin-top: 40px;
+  /* margin-top: 40px; */
 }
